@@ -26,9 +26,7 @@ jobs:
 
       - name: Build artifact
         run: npm ci && npm run build && tar -czf app.tar.gz dist/
-      
-      - name: Create artifact
-        run: tar -czf app.tar.gz dist/
+    
       
       - name: Generate artifact attestation
         uses: actions/attest@v4              #⬅️ official GitHub action
