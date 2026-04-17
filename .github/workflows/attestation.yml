@@ -24,17 +24,22 @@ jobs:
         with:
           node-version: '20'
 
-      - run: npm install && npm run build
+      - name: Build artifact
+        run: npm run build && tar -czf app.tar.gz dist/
 
+      
       - name: Create artifact
         run: tar -czf app.tar.gz dist/
+      
+      - name: Generate artifact attestation
+        uses: actions/attest@v4              #⬅️ official GitHub action
+        with:
+          subject-path: 'app.tar.gz'        #⬅️ file the attestation covers
+
 
       # TODO: Add actions/attest@v4
       #   - subject-path: 'app.tar.gz'
-      
-      - uses: actions/attest@v4
-        with:
-          subject-path: 'app.tar.gz'
+
 
       - uses: actions/upload-artifact@v4
         with:
