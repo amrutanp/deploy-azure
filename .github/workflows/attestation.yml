@@ -5,7 +5,7 @@ on:
     branches: [main]
     
 permissions:
-  contents: read
+  contents: write
   attestations: write
   id-token: write
 # TODO: Set permissions to default deny ({})
