@@ -1,0 +1,38 @@
+name: Build and Attest
+
+on:
+  push:
+    branches: [main]
+    
+permissions:
+  contents: read
+  attestations: write
+  id-token: write
+# TODO: Set permissions to default deny ({})
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    # TODO: Add permissions needed for attestation
+    #   - id-token: write
+    #   - contents: read
+    #   - attestations: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - run: npm ci && npm run build
+
+      - name: Create artifact
+        run: tar -czf app.tar.gz dist/
+
+      # TODO: Add actions/attest@v4
+      #   - subject-path: 'app.tar.gz'
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: app-artifact
+          path: app.tar.gz
