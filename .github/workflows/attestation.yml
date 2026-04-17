@@ -25,8 +25,7 @@ jobs:
           node-version: '20'
 
       - name: Build artifact
-        run: npm run build && tar -czf app.tar.gz dist/
-
+        run: npm ci && npm run build && tar -czf app.tar.gz dist/
       
       - name: Create artifact
         run: tar -czf app.tar.gz dist/
