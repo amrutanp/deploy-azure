@@ -25,7 +25,7 @@ jobs:
           node-version: '20'
 
       - name: Build artifact
-        run: npm ci && npm run build && tar -czf app.tar.gz dist/
+        run: npm ci && npm run build && tar -czf app.tar.gz public/
     
       
       - name: Generate artifact attestation
