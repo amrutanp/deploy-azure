@@ -19,7 +19,7 @@ jobs:
     # environment: ???
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       # # TODO: Login to Azure using OIDC (no client-secret!)
       # Use azure/login@v2
